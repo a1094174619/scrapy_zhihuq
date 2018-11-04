@@ -1,0 +1,2 @@
+# scrapy_zhihuq
+抓取知乎上的问题并且自动上传到Mysql服务器上
