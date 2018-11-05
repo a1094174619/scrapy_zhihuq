@@ -61,7 +61,9 @@ class ZhihuqSpider(scrapy.Spider):
             url = url_base + str(i)
 
             if self.__stop_flag > 0 :
-                break
+                time.sleep(600)
+                __stop_flag = 0;
+                #break
             
             #时刻写入正在读取的位置，这段代码有很大问题，会不断的打开关闭文件，不过可以刚好当作一个延时使用
             with open("count.txt","w") as f:
