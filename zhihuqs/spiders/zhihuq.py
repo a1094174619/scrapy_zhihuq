@@ -24,6 +24,8 @@ class ZhihuqSpider(scrapy.Spider):
         if title == "安全验证":
             self.__stop_flag = 5
             print("出现验证码")
+        else:
+            self.__stop_flag = 0
 
         if title and (title!="安全验证"):
             title = title.encode("utf-8")
@@ -61,8 +63,10 @@ class ZhihuqSpider(scrapy.Spider):
             url = url_base + str(i)
 
             if self.__stop_flag > 0 :
-                time.sleep(600)
-                __stop_flag = 0;
+                print("IP被BAN！")
+                for j in range(0,31):
+                    time.sleep(1)
+                    print("还剩",30-j,"秒重启爬虫")
                 #break
             
             #时刻写入正在读取的位置，这段代码有很大问题，会不断的打开关闭文件，不过可以刚好当作一个延时使用
