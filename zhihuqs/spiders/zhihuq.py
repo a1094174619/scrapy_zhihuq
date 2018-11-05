@@ -26,7 +26,7 @@ class ZhihuqSpider(scrapy.Spider):
             print("出现验证码")
 
         if title and (title!="安全验证"):
-            title.encode("utf-8")
+            title = title.encode("utf-8")
             #提取标签
             head_list = response.css("#root > div > main > div > meta:nth-child(3)").xpath("@content").extract_first().encode("utf-8")
             #获取点赞数
