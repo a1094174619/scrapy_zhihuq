@@ -18,13 +18,15 @@ class ZhihuqSpider(scrapy.Spider):
     def parse(self, response):
 
         #提取标题
-        title = response.selector.xpath("/html/head/title[1]/text()").extract_first()[0:-5].encode("utf-8")
+        title = response.selector.xpath("/html/head/title[1]/text()").extract_first()[0:-5]
         
         #出现安全验证停止抓取
         if title == "安全验证":
             self.__stop_flag = 5
+            print("出现验证码")
 
         if title and (title!="安全验证"):
+            title.encode("utf-8")
             #提取标签
             head_list = response.css("#root > div > main > div > meta:nth-child(3)").xpath("@content").extract_first().encode("utf-8")
             #获取点赞数
@@ -64,4 +66,4 @@ class ZhihuqSpider(scrapy.Spider):
             #时刻写入正在读取的位置，这段代码有很大问题，会不断的打开关闭文件，不过可以刚好当作一个延时使用
             with open("count.txt","w") as f:
                 f.write(str(i))
-            yield scrapy.Request(url,callback=self.parse)
+            yield scrapy.Request(url,callback=self.parse,dont_filter=True)
