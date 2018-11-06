@@ -4,7 +4,7 @@
 
 while true
 do
-	ps -fe | grep zhihuq | grep -v grep
+	ps -fe | grep "scrapy crawl zhihuq" | grep -v grep
 	if [ $? -ne 0 ]
 	then
 		echo "start scrapy"
@@ -12,7 +12,8 @@ do
 		echo "killing scrapy,start scrapy after 10s"
 		sleep 10
 		scrapy crawl zhihuq
+	else
+		echo "scrapy is running!"
 	fi
-	echo "scrapy is running!"
 	sleep 60
 done
