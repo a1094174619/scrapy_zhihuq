@@ -63,10 +63,11 @@ class ZhihuqSpider(scrapy.Spider):
             url = url_base + str(i)
 
             if self.__stop_flag > 0 :
+                break
                 print("IP被BAN！")
-                for j in range(0,31):
+                for j in range(0,11):
                     time.sleep(1)
-                    print("还剩",30-j,"秒重启爬虫")
+                    print("还剩",10-j,"秒重启爬虫")
                 #break
             
             #时刻写入正在读取的位置，这段代码有很大问题，会不断的打开关闭文件，不过可以刚好当作一个延时使用
