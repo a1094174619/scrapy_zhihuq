@@ -19,15 +19,15 @@ class ZhihuqSpider(scrapy.Spider):
 
         #提取标题
         title = response.selector.xpath("/html/head/title[1]/text()").extract_first()[0:-5]
-        
+        safe_code = u'\u5b89\u5168\u9a8c\u8bc1'
         #出现安全验证停止抓取
-        if title == "安全验证":
+        if title == safe_code:
             self.__stop_flag = 5
             print("出现验证码")
         else:
             self.__stop_flag = 0
 
-        if title and (title!="安全验证"):
+        if title and (title != safe_code):
             title = title.encode("utf-8")
             #提取标签
             head_list = response.css("#root > div > main > div > meta:nth-child(3)").xpath("@content").extract_first().encode("utf-8")
