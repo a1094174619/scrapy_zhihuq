@@ -59,19 +59,17 @@ class ZhihuqSpider(scrapy.Spider):
         with open("count.txt","r") as f:
             start_index = int(f.read());
 
+        with open("count.txt","w") as f:
+            for i in range(start_index,23999999):
+                url = url_base + str(i)
 
-        for i in range(start_index,23999999):
-            url = url_base + str(i)
-
-            if self.__stop_flag > 0 :
-                print("IP被BAN,开始突破验证码")
-                verti=ZhiHuCaptchaRecognition()
-                verti.PassVerti()
-                __stop_flag = 5
-                print("验证码突破成功！重启爬虫")
-                break
-                      
-            #时刻写入正在读取的位置，这段代码有很大问题，会不断的打开关闭文件，不过可以刚好当作一个延时使用
-            with open("count.txt","w") as f:
+                if self.__stop_flag > 0 :
+                    print("IP被BAN,开始突破验证码")
+                    verti=ZhiHuCaptchaRecognition()
+                    verti.PassVerti()
+                    __stop_flag = 5
+                    print("验证码突破成功！重启爬虫")
+                    break  
+            #时刻写入正在读取的位置
                 f.write(str(i))
             yield scrapy.Request(url,callback=self.parse,dont_filter=True)

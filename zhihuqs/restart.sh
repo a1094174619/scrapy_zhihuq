@@ -15,5 +15,5 @@ do
 	else
 		echo "scrapy is running!"
 	fi
-	sleep 60
+	sleep 10
 done

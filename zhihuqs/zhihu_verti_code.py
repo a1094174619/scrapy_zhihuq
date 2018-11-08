@@ -73,7 +73,7 @@ class ZhiHuCaptchaRecognition:
             time.sleep(3)
             count = count + 1
 
-            if count > 20:
+            if count > 15:
                 #点击按钮被锁，重新打开界面
                 driver.get(self.url)
                 time.sleep(3)
