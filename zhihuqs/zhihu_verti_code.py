@@ -64,6 +64,8 @@ class ZhiHuCaptchaRecognition:
                 f.write(image)
 
             result_text = self.VertiImage()
+            if len(result_text) < 2:
+                result_text = result_text + "xxx"
             inputbox_elem = driver.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='进入知乎'])[1]/following::input[1]")
             button_elem = driver.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='进入知乎'])[1]/following::button[1]")
             inputbox_elem.clear()
