@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #定时监测爬虫是否在运行，没有运行则启动
-
+kill -9 $(pgrep scrapy)
 while true
 do
 	ps -fe | grep "scrapy crawl zhihuq" | grep -v grep
