@@ -60,7 +60,7 @@ class ZhihuqSpider(scrapy.Spider):
             start_index = int(f.read());
 
         with open("count.txt","w") as f:
-            for i in range(start_index,23999999):
+            for i in range(start_index,26999999):
                 url = url_base + str(i)
 
                 if self.__stop_flag > 0 :
@@ -71,5 +71,6 @@ class ZhihuqSpider(scrapy.Spider):
                     print("验证码突破成功！重启爬虫")
                     break  
             #时刻写入正在读取的位置
+            	f.seek(0,0)
                 f.write(str(i))
-            yield scrapy.Request(url,callback=self.parse,dont_filter=True)
+            	yield scrapy.Request(url,callback=self.parse,dont_filter=True)
