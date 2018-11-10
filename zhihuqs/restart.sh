@@ -10,10 +10,10 @@ do
 		echo "start scrapy"
 		kill -9 $(pgrep scrapy)
 		echo "killing scrapy,start scrapy after 10s"
-		sleep 10
 		scrapy crawl zhihuq
+		echo "restart scrapy"
+		sleep 10
 	else
 		echo "scrapy is running!"
 	fi
-	sleep 10
 done

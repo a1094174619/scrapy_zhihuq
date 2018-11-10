@@ -60,7 +60,7 @@ class ZhihuqSpider(scrapy.Spider):
             start_index = int(f.read());
 
         with open("count.txt","w") as f:
-            for i in range(start_index,26999999):
+            for i in range(start_index,39999999):
                 url = url_base + str(i)
 
                 if self.__stop_flag > 0 :
